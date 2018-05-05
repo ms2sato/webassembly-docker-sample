@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  app:
+    image: ms2sato/webassembly:latest
+    command: /bin/bash
+    volumes:
+      - ./src:/src
+      - ./data/html:/var/www/html
+    tty: true
+    stdin_open: true
+  httpd:
+    image: nginx:1.13.5-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./etc/nginx/conf.d:/etc/nginx/conf.d
+      - ./data/html:/var/www/html
+    links: 
+      - app

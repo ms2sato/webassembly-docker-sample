@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>WebAssembly Test</title>
+</head>
+<body>
+
+<input type="button" id="countup" value="CountUp?" />
+
+<script type='text/javascript'>
+  var importObject = { imports: { imported_func: arg => console.log(arg) } };
+  var module;
+  WebAssembly.instantiateStreaming(fetch('sample.wasm'), importObject)
+      .then(obj => {
+        module = obj.instance
+  });
+
+  document.getElementById( 'countup' ).addEventListener( 'click', function (){
+    this.value = module.exports.count();
+  }, false);
+</script>
+
+</body>
+</html>
