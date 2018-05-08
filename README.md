@@ -7,7 +7,7 @@ sample of ms2sato/webassembly-docker
 docker-compose build
 docker-compose run --rm app /bin/bash
 
-$ build.sh sample.c # for compiled wasm on ./data/html/sample.wasm
+$ build.sh sample # for compiled wasm on ./data/html/sample.wasm
 $ exit
 
 docker-compose up
